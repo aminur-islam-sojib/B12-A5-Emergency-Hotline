@@ -2,6 +2,10 @@
   border: 1px solid red;
 } */
 
+body {
+  font-family: "Hind Madurai", sans-serif;
+}
+
 .navCard {
   background: #41ff6a5b;
   padding: 12px;
@@ -12,6 +16,7 @@
   border-radius: 50px;
   width: 125px;
   justify-content: center;
+  align-items: center;
 }
 
 .navBtn {
