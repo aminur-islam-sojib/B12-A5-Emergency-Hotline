@@ -20,7 +20,7 @@ copyBtns.forEach((copyBtn, index) => {
   copyBtn.addEventListener("click", function () {
     const text = hotlineNumbers[index].innerHTML;
     navigator.clipboard.writeText(text);
-    alert(`The number has been copied. ${text}`);
+    alert(` 📋 The number has been copied, in your clipboard. ${text}`);
     copyCounter++;
     copyCount.innerText = copyCounter;
   });
@@ -37,13 +37,42 @@ phones.forEach((phone, index) => {
     if (coin > 0) {
       const iName = instituteName[index].innerHTML;
       const number = hotlineNumbers[index].innerHTML;
-      alert(`Calling ${iName} ${number}...`);
+      alert(`📞 Calling ${iName} ${number}...`);
       coin -= 20;
-      console.log(coin);
       coinCounter.innerHTML = coin;
+      loadHistory(iName, number);
     } else {
-      console.log("You have 0 coin");
-      alert(`You need at least 20 coins to make a call.`);
+      alert(`❌ You need at least 20 coins to make a call.`);
     }
   });
+});
+
+const historySection = document.getElementById("history-section");
+const clearBtn = document.querySelector(".btn-accent");
+const loadHistory = (iName, number) => {
+  const div = document.createElement("div");
+  const now = new Date();
+  const time = now.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  });
+
+  div.innerHTML = `<div
+            class="flex mt-3 p-2 rounded-md justify-between align-middle items-center bg-gray-100"
+          >
+            <div>
+              <h1 class="font-medium text-[18px]">${iName}</h1>
+              <h3>${number}</h3>
+            </div>
+            <div>
+              <h1>${time}</h1>
+            </div>
+          </div>`;
+  historySection.appendChild(div);
+};
+
+clearBtn.addEventListener("click", function () {
+  historySection.innerHTML = "";
 });
