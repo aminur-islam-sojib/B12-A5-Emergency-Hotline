@@ -40,3 +40,8 @@ body {
   color: #5c5c5c;
   border-radius: 10px;
 }
+
+.btn-accent,
+.btn-success {
+  color: white;
+}
